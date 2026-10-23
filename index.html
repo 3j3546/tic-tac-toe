@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>틱택토</title>
+<style>
+  body { font-family: system-ui, sans-serif; display: flex; flex-direction: column; align-items: center; margin: 0; padding: 32px 16px; background: #f5f5f7; color: #222; }
+  h1 { margin: 0 0 8px; }
+  #status { margin: 8px 0 16px; font-size: 1.2rem; min-height: 1.5em; }
+  #board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; width: min(90vw, 330px); aspect-ratio: 1; }
+  .cell { background: #fff; border: none; border-radius: 10px; font-size: 3rem; font-weight: bold; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,.15); }
+  .cell:disabled { cursor: default; }
+  .cell.X { color: #e63946; } .cell.O { color: #1d70b8; }
+  .cell.win { background: #ffe8a3; }
+  .controls { margin-top: 20px; display: flex; gap: 12px; align-items: center; }
+  button.reset { padding: 8px 18px; font-size: 1rem; border-radius: 8px; border: none; background: #222; color: #fff; cursor: pointer; }
+  #score { margin-top: 16px; }
+</style>
+</head>
+<body>
+<h1>틱택토</h1>
+<div id="status"></div>
+<div id="board"></div>
+<div class="controls">
+  <label><input type="checkbox" id="ai" checked> 컴퓨터와 대결 (O)</label>
+  <button class="reset" id="reset">다시 시작</button>
+</div>
+<div id="score"></div>
+<script src="game.js"></script>
+</body>
+</html>
