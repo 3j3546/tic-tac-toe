@@ -93,6 +93,7 @@ function render(w) {
 
   const tag = (p) => `<span class="${p.toLowerCase()}">${p}</span>`;
   statusEl.classList.toggle('win', !!w);
+  $('now').classList.toggle('over', !!w);
   if (!w) {
     statusEl.innerHTML = aiTurn() ? '컴퓨터가 생각 중…' : `${tag(turn)} 차례예요`;
   } else if (!w.player) {

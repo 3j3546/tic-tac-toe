@@ -6,7 +6,7 @@
 <title>틱택토</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,7 +16,6 @@
   <div class="mode" role="radiogroup" aria-label="게임 모드">
     <button class="mode-btn" data-mode="ai" aria-pressed="true">vs 컴퓨터</button>
     <button class="mode-btn" data-mode="pvp" aria-pressed="false">2인 대결</button>
-    <span class="mode-slider"></span>
   </div>
 
   <div class="score">
@@ -30,7 +29,10 @@
     <svg id="win-line" class="win-line"><line /></svg>
   </div>
 
-  <p id="status" class="status"></p>
+  <div class="now" id="now">
+    <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <p id="status" class="status"></p>
+  </div>
 
   <button id="reset" class="reset">
     <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
