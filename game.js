@@ -15,7 +15,10 @@ const statusEl = $('status');
 const winLineEl = $('win-line');
 const modeEl = document.querySelector('.mode');
 
-let board, turn, over, mode = 'ai';
+let board, turn, over, mode = 'ai', level = 'hard';
+
+// 난이도별로 컴퓨터가 최선의 수를 둘 확률
+const SKILL = { easy: 0.1, normal: 0.6, hard: 1 };
 const score = { X: 0, O: 0, draw: 0 };
 const cells = [];
 
@@ -42,6 +45,12 @@ function minimax(b, player, depth = 0) {
   return best;
 }
 
+function aiMove() {
+  if (Math.random() < SKILL[level]) return minimax(board, 'O').index;
+  const empty = board.map((v, i) => (v ? null : i)).filter((i) => i !== null);
+  return empty[Math.floor(Math.random() * empty.length)];
+}
+
 function markSvg(player, cls) {
   return `<svg viewBox="0 0 100 100" class="mark ${player.toLowerCase()} ${cls}">${MARKS[player]}</svg>`;
 }
@@ -62,7 +71,7 @@ function play(i) {
     if (w.player) showWinLine(w.line);
   }
   render(w);
-  if (!over && aiTurn()) setTimeout(() => play(minimax(board, 'O').index), 450);
+  if (!over && aiTurn()) setTimeout(() => play(aiMove()), 450);
 }
 
 function showWinLine(line) {
@@ -123,7 +132,16 @@ function reset() {
 function setMode(m) {
   mode = m;
   modeEl.dataset.mode = m;
-  document.querySelectorAll('.mode-btn').forEach((b) => b.setAttribute('aria-pressed', b.dataset.mode === m));
+  $('level').hidden = m !== 'ai';
+  function setLevel(l) {
+  level = l;
+  document.querySelectorAll('.level-btn').forEach((b) => b.setAttribute('aria-pressed', b.dataset.level === l));
+  score.X = score.O = score.draw = 0;
+  reset();
+}
+
+document.querySelectorAll('.level-btn').forEach((b) => b.addEventListener('click', () => setLevel(b.dataset.level)));
+document.querySelectorAll('.mode-btn').forEach((b) => b.setAttribute('aria-pressed', b.dataset.mode === m));
   $('label-x').textContent = m === 'ai' ? '나' : '';
   $('label-o').textContent = m === 'ai' ? '컴퓨터' : '';
   score.X = score.O = score.draw = 0;

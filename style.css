@@ -61,6 +61,24 @@ h1 {
 .mode-btn:active { transform: scale(0.96); }
 .mode-btn[aria-pressed="true"] { background: var(--green); color: #000; font-weight: 600; }
 
+/* 난이도 */
+.level { display: flex; align-items: center; gap: 6px; margin-top: -8px; }
+.level[hidden] { display: none; }
+.level-label { font-size: 0.8rem; color: var(--muted); font-weight: 600; margin-right: 4px; }
+.level-btn {
+  padding: 5px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.level-btn:hover { border-color: var(--text); color: var(--text); }
+.level-btn[aria-pressed="true"] { border-color: var(--text); color: var(--text); font-weight: 600; }
+
 /* 점수판 */
 .score {
   display: grid;
